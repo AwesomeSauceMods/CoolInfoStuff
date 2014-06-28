@@ -1,0 +1,29 @@
+//rootProject.name = 'AwesomeSauceCore'
+
+import groovy.io.FileType
+
+// dynamic module loader
+def exclude = [
+	"minecraft",
+	"gradle",
+	"out",
+	"src",
+	"bin",
+	"build",
+	"config",
+	"crash-reports",
+	"logs",
+	"mods",
+    "run",
+	"resourcepacks",
+	"saves",
+	"TestPack",
+	"MODULE TEMPLATE",
+    "eclipse"
+]
+rootProject.projectDir.eachFile(FileType.DIRECTORIES) {
+	if (it.getName().startsWith('.') || exclude.contains(it.getName()))
+		return
+	else
+		include it.getName()
+}

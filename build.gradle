@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+apply plugin: 'scala'
+apply plugin: 'forge'
+version = "0.5.0"
+group= "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "AwesomeSauceCore"
+
+subprojects {
+apply plugin: 'scala'
+apply plugin: 'forge'
+
+    group = "com.awesomesauce.minecraft.forge." + name.toLowerCase()
+    archivesBaseName = name
+    version = "0.1.0"
+
+    dependencies {
+        if (project.name != "ASSScript" && project.name != "AwesomeSauceLib")
+        {
+        compile rootProject
+        }
+    }
+
+    rootProject.reobf {
+        reobf(jar) { spec ->
+            spec.classpath = sourceSets.main.compileClasspath
+        }
+    }
+
+    jar {
+        destinationDir = new File(rootProject.getBuildDir(), 'libs')
+    }
+}
+allprojects {
+    
+minecraft {
+    version = "1.7.10-10.13.0.1152"
+}
+    processResources
+    {
+        // replace stuff in mcmod.info, nothing else
+        from(sourceSets.main.resources.srcDirs) {
+            include 'mcmod.info'
+                    
+            // replace version and mcversion
+            expand 'version':project.version, 'mcversion':rootProject.minecraft.version
+        }
+        
+        // copy everything else, thats not the mcmod.info
+        from(sourceSets.main.resources.srcDirs) {
+            exclude 'mcmod.info'
+        }
+    }
+}
