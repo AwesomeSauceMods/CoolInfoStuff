@@ -19,7 +19,8 @@ def exclude = [
 	"saves",
 	"TestPack",
 	"MODULE TEMPLATE",
-    "eclipse"
+    "eclipse",
+    "website"
 ]
 rootProject.projectDir.eachFile(FileType.DIRECTORIES) {
 	if (it.getName().startsWith('.') || exclude.contains(it.getName()))
