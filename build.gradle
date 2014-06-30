@@ -18,6 +18,7 @@ apply plugin: 'scala'
 apply plugin: 'forge'
 group= "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AwesomeSauceCore"
+version = "1.7.x"
 
 subprojects {
 apply plugin: 'scala'
