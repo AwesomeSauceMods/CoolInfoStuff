@@ -1,0 +1,7 @@
+repositories {
+    maven { url = "http://maven.cil.li/" }
+}
+dependencies {
+    compile group: 'li.cil.oc', name: 'OpenComputers', version: 'MC1.7.2-1.3.0.215-rc.1', classifier: 'api'
+    compile project(":RnDTech")
+}
