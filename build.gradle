@@ -10,10 +10,6 @@ buildscript {
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
         maven {
-            name = "OC"
-            url = "http://maven.cil.li/"
-        }
-        maven {
             name = "ProfMobius"
             url = "http://mobiusstrip.eu/maven"
         }
@@ -32,22 +28,21 @@ buildscript {
 }
 apply plugin: 'scala'
 apply plugin: 'forge'
-group= "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AwesomeSauceCore"
 version = "1.7.x"
 
 subprojects {
-apply plugin: 'scala'
-apply plugin: 'forge'
+    apply plugin: 'scala'
+    apply plugin: 'forge'
 
     group = "com.awesomesauce.minecraft.forge." + name.toLowerCase()
     archivesBaseName = name
     version = "1.7.x"
 
     dependencies {
-        if (project.name != "ASSScript" && project.name != "AwesomeSauceLib")
-        {
-        compile rootProject
+        if (project.name != "ASSScript" && project.name != "AwesomeSauceLib") {
+            compile rootProject
         }
     }
 
@@ -62,23 +57,23 @@ apply plugin: 'forge'
     }
 }
 allprojects {
-    
-minecraft {
-    version = "1.7.10-10.13.0.1152"
-}
-    processResources
-    {
-        // replace stuff in mcmod.info, nothing else
-        from(sourceSets.main.resources.srcDirs) {
-            include 'mcmod.info'
-                    
-            // replace version and mcversion
-            expand 'version':project.version, 'mcversion':rootProject.minecraft.version
-        }
-        
-        // copy everything else, thats not the mcmod.info
-        from(sourceSets.main.resources.srcDirs) {
-            exclude 'mcmod.info'
-        }
+
+    minecraft {
+        version = "1.7.10-10.13.0.1152"
     }
+    processResources
+            {
+                // replace stuff in mcmod.info, nothing else
+                from(sourceSets.main.resources.srcDirs) {
+                    include 'mcmod.info'
+
+                    // replace version and mcversion
+                    expand 'version': project.version, 'mcversion': rootProject.minecraft.version
+                }
+
+                // copy everything else, thats not the mcmod.info
+                from(sourceSets.main.resources.srcDirs) {
+                    exclude 'mcmod.info'
+                }
+            }
 }
