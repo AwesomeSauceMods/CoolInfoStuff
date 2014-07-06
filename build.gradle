@@ -9,6 +9,22 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "OC"
+            url = "http://maven.cil.li/"
+        }
+        maven {
+            name = "ProfMobius"
+            url = "http://mobiusstrip.eu/maven"
+        }
+        maven {
+            name = "ChickenBones"
+            url = "http://chickenbones.net/maven/"
+        }
+        maven {
+            name = "ic2"
+            url = "http://maven.ic2.player.to/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
