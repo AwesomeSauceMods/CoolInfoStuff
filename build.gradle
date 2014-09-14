@@ -30,7 +30,7 @@ apply plugin: 'scala'
 apply plugin: 'forge'
 group = "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AwesomeSauceCore"
-version = "1.7.x"
+version = "1.7.x-b" + System.getenv()["BUILD_ID"]
 
 subprojects {
     apply plugin: 'scala'
@@ -38,7 +38,8 @@ subprojects {
 
     group = "com.awesomesauce.minecraft.forge." + name.toLowerCase()
     archivesBaseName = name
-    version = "1.7.x"
+    version = "1.7.x-b" + System.getenv()["BUILD_ID"]
+
 
     dependencies {
         if (project.name != "ASSScript" && project.name != "AwesomeSauceLib") {
