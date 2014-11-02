@@ -28,5 +28,3 @@ rootProject.projectDir.eachFile(FileType.DIRECTORIES) {
 	else
 		include it.getName()
 }
-include 'SoulBound'
-
