@@ -17,10 +17,6 @@ buildscript {
             name = "ChickenBones"
             url = "http://chickenbones.net/maven/"
         }
-        maven {
-            name = "ic2"
-            url = "http://maven.ic2.player.to/"
-        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -30,7 +26,12 @@ apply plugin: 'scala'
 apply plugin: 'forge'
 group = "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AwesomeSauceCore"
-version = "1.7.x-b" + System.getenv()["BUILD_ID"]
+if (System.getenv("BUILD_ID") == null) {
+    version = "1.7.x-bmanual"
+}
+else {
+    version = "1.7.x-b" + System.getenv("BUILD_ID")
+}
 
 subprojects {
     apply plugin: 'scala'
@@ -38,7 +39,12 @@ subprojects {
 
     group = "com.awesomesauce.minecraft.forge." + name.toLowerCase()
     archivesBaseName = name
-    version = "1.7.x-b" + System.getenv()["BUILD_ID"]
+    if (System.getenv("BUILD_ID") == null) {
+        version = "1.7.x-bmanual"
+    }
+    else {
+        version = "1.7.x-b" + System.getenv("BUILD_ID")
+    }
 
 
     dependencies {
