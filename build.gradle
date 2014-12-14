@@ -26,11 +26,11 @@ apply plugin: 'scala'
 apply plugin: 'forge'
 group = "com.awesomesauce.minecraft.forge.core" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AwesomeSauceCore"
-buildtarget = "1.7.x"
+def versionprefix = "1.7.x"
 if (System.getenv("TRAVIS") == "true") {
-    version = buildtarget + "-" + System.getenv("TRAVIS_BRANCH") + "-b" + System.getenv("TRAVIS_BUILD_NUMBER")
+    version = versionprefix + "-" + System.getenv("TRAVIS_BRANCH") + "-b" + System.getenv("TRAVIS_BUILD_NUMBER")
 } else if (System.getenv("BUILD_ID") == null) {
-    version = buildtarget + "-bmanual"
+    version = versionprefix + "-bmanual"
 }
 else {
     version = "1.7.x-b" + System.getenv("BUILD_ID")
@@ -42,8 +42,10 @@ subprojects {
 
     group = "com.awesomesauce.minecraft.forge." + name.toLowerCase()
     archivesBaseName = name
-    if (System.getenv("BUILD_ID") == null) {
-        version = "1.7.x-bmanual"
+    if (System.getenv("TRAVIS") == "true") {
+        version = versionprefix + "-" + System.getenv("TRAVIS_BRANCH") + "-b" + System.getenv("TRAVIS_BUILD_NUMBER")
+    } else if (System.getenv("BUILD_ID") == null) {
+        version = versionprefix + "-bmanual"
     }
     else {
         version = "1.7.x-b" + System.getenv("BUILD_ID")
