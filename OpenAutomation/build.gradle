@@ -5,5 +5,5 @@ repositories {
     }
 }
 dependencies {
-    compile group: 'li.cil.oc', name: 'OpenComputers', version: 'MC1.7.10-1.4.0.7-rc.1', classifier: 'api'
+    compile group: 'li.cil.oc', name: 'OpenComputers', version: 'MC1.7.10-1.5.8.17', classifier: 'api'
 }
